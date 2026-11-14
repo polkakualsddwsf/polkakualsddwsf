@@ -682,7 +682,7 @@ async function shareBackup() {
   const name = 'zaba-zaloha-' + today() + '.txt', blob = new Blob([JSON.stringify(data)], {type: 'text/plain'});
   try {
     const file = new File([blob], name, {type: 'text/plain'});
-    if (navigator.canShare && navigator.canShare({files: [file]})) await navigator.share({files: [file], title: name});
+    if (navigator.canShare && navigator.canShare({files: [file]})) await navigator.share({files: [file]});
     else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); }
   } catch (e) { if (e && e.name === 'AbortError') return; return toast('Zálohu se nepovedlo uložit'); }
   settings.lastBackup = Date.now(); delete settings.bkpSnooze; saveSettings(); renderBackup(); toast('Záloha uložena');
@@ -720,7 +720,7 @@ async function saveBackupTxt() {
     let dl = null; try { dl = (typeof claude !== 'undefined' && claude.use) ? await claude.use('downloads') : null; } catch (e) {}
     if (dl) { await dl.save({filename: name, data: text}); settings.lastBackup = Date.now(); delete settings.bkpSnooze; saveSettings(); renderBackup(); return toast('Záloha uložena do souboru'); }
     const file = new File([blob], name, {type: 'text/plain'});
-    if (navigator.canShare && navigator.canShare({files: [file]})) await navigator.share({files: [file], title: name});
+    if (navigator.canShare && navigator.canShare({files: [file]})) await navigator.share({files: [file]});
     else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); }
   } catch (e) { if (e && e.name === 'AbortError') return; return toast('Soubor se nepovedlo uložit – použij zkopírování'); }
   settings.lastBackup = Date.now(); delete settings.bkpSnooze; saveSettings(); renderBackup(); toast('Záloha uložena do souboru');

@@ -62,7 +62,7 @@ html.moving .bg i{animation-play-state:paused}
 @keyframes drift3{to{transform:translate(14vmax,-12vmax) scale(1.2)}}
 
 /* Hlavička: žába v čočce + stav úložiště */
-header{position:relative;padding:calc(26px + env(safe-area-inset-top)) 18px 6px;display:flex;align-items:center;gap:12px;animation:hdrIn .9s cubic-bezier(.2,.8,.2,1) both}
+header{position:relative;padding:calc(30px + env(safe-area-inset-top)) 18px 6px;display:flex;align-items:center;gap:12px;animation:hdrIn .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes hdrIn{from{opacity:0;transform:translateY(-10px)}}
 header h1{flex:none;margin:0;width:50px;height:50px;display:grid;place-items:center;font-size:27px;line-height:1;border-radius:50%;position:relative;background:radial-gradient(circle at 34% 24%,rgba(255,255,255,.26),transparent 46%),linear-gradient(165deg,var(--g1),var(--g2));box-shadow:inset 0 1px 0 var(--hi),inset 0 -8px 16px -8px rgba(0,0,0,.28),0 0 0 1px var(--line),0 12px 28px -12px var(--sh),0 0 34px -12px var(--glow)}
 #ring{position:absolute;left:-6px;top:-6px;width:62px;height:62px;transform:rotate(-90deg);pointer-events:none;overflow:visible}

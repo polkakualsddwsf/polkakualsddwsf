@@ -263,7 +263,27 @@ div.tg input[type=checkbox]:focus-visible{box-shadow:0 0 0 3px var(--ring)}
 #modal h3{margin:0 0 8px;font:700 21px/1.2 Brico,-apple-system,system-ui,sans-serif;letter-spacing:-.3px;color:var(--neg)}
 #modal p{margin:0 0 18px;color:var(--mut);font-size:14px;line-height:1.5}
 #modal .btns{display:flex;gap:10px}#modal .btns>*{flex:1}
-@keyframes mfade{from{opacity:0}}@keyframes mpop{from{transform:scale(.92) translateY(8px);opacity:0}}
+@keyframes mfade{from{opacity:0}}
+.axb{display:inline-flex;gap:14px}
+.ed{background:none;color:var(--accTx);font-size:12px;font-weight:600;padding:5px 0 0;margin-top:2px}
+.axf{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.axf input{min-height:44px;padding:10px 12px;border-radius:14px}
+.entry .m.note{white-space:normal;word-break:break-word;color:var(--mut);margin-top:2px}
+.nm{background:none;color:var(--tx);font:inherit;font-weight:650;padding:3px 14px 3px 0;text-align:left;border-bottom:1px dashed var(--mut2);border-radius:0;display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative}
+.nm::after{content:"\203A";position:absolute;right:2px;top:50%;transform:translateY(-52%);color:var(--mut);font-size:15px;line-height:1}
+#byName th:first-child,#byName td:first-child{width:100%;max-width:0}
+#prof{position:fixed;inset:0;z-index:31;display:none;align-items:center;justify-content:center;padding:max(18px,env(safe-area-inset-top)) 16px max(18px,env(safe-area-inset-bottom));background:rgba(0,6,3,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#prof.show{display:flex;animation:mfade .25s ease}
+#prof .pbox{position:relative;width:100%;max-width:420px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:radial-gradient(120% 70% at 12% 0%,var(--sheen),transparent 62%),linear-gradient(165deg,var(--g1),var(--g2)),var(--bg);box-shadow:inset 0 1px 0 var(--hi),0 0 0 1px var(--line),0 40px 80px -30px rgba(0,0,0,.8);border-radius:30px;padding:22px 18px 18px;animation:mpop .35s cubic-bezier(.3,1.4,.5,1)}
+#prof h3{margin:0;font:700 27px/1.15 Brico,-apple-system,system-ui,sans-serif;letter-spacing:-.4px;padding-right:40px;word-break:break-word}
+#prof .sub{color:var(--mut);font-size:13px;margin:4px 0 14px}
+#prof .px{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:50%;background:var(--card2);color:var(--mut);font-size:14px;line-height:34px;padding:0;box-shadow:0 0 0 1px var(--line)}
+#prof .seg{margin:0 0 12px}
+#prof .sec{display:flex;justify-content:space-between;align-items:baseline;margin:18px 2px 6px;font-size:12.5px;font-weight:700;color:var(--mut)}
+#prof .sec span{font-weight:600}
+#prof .spark{width:100%;height:auto;display:block;margin:2px 0 0;overflow:visible}
+#prof .spark rect{fill:var(--acc)}#prof .spark rect.n{fill:var(--neg)}
+#prof .entry{padding:10px 0}@keyframes mpop{from{transform:scale(.92) translateY(8px);opacity:0}}
 
 /* Oznámení */
 #toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom) * .5);transform:translateX(-50%) translateY(14px) scale(.96);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03)),var(--navbg);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:inset 0 1px 0 var(--hi),inset 0 0 0 1px var(--line),0 16px 34px -14px var(--sh);padding:11px 20px;border-radius:999px;font-size:14px;font-weight:700;opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.3,1.4,.5,1);pointer-events:none;z-index:9;max-width:90%;text-align:center}
@@ -311,6 +331,7 @@ el.className='on';setTimeout(function(){el.className='on out'},1250);setTimeout(
       <div class="f"><label for="axDate">Datum</label><input id="axDate" type="date"></div>
       <div class="f"><label for="axAmt">Částka</label><input id="axAmt" inputmode="decimal" placeholder="0"></div>
     </div>
+    <div class="f"><label for="axNote">Poznámka</label><input id="axNote" maxlength="200" placeholder="Volitelné" autocomplete="off"></div>
     <button class="primary" id="axSave">Uložit</button>
     <div id="axList" style="margin-top:8px"></div>
   </div>
@@ -410,6 +431,7 @@ el.className='on';setTimeout(function(){el.className='on out'},1250);setTimeout(
   <button data-t="set"><b><svg viewBox="0 0 24 24"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></svg></b>Nastavení</button>
 </nav>
 <div id="toast"></div>
+<div id="prof" aria-hidden="true"><div class="pbox" role="dialog" aria-modal="true" aria-labelledby="pTitle"><button class="px" id="pX" type="button" aria-label="Zavřít">&#10005;</button><div id="pBody"></div></div></div>
 <div id="modal"><div class="box"><h3>CASINO – smazat úplně vše?</h3><p>Smažou se všechny záznamy, sekery, jména, ceny i cíle. Tuhle akci nejde vrátit zpět. Pro potvrzení podrž tlačítko 3 sekundy.</p>
 <button class="hold" id="hold" type="button"><div class="sea"><svg class="w1" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 6 Q25 0 50 6 T100 6 T150 6 T200 6 V12 H0Z"/></svg><svg class="w2" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 6 Q25 12 50 6 T100 6 T150 6 T200 6 V12 H0Z"/></svg><b></b></div><span>Podrž pro smazání</span></button>
 <button class="ghost" id="mNo" type="button" style="width:100%;margin-top:10px">Zrušit</button></div></div></div>
@@ -547,21 +569,38 @@ $('#axSave').addEventListener('click', () => {
   if (!name) return toast('Vyber jméno (možnosti v Nastavení)');
   if (isNaN(amt)) return toast('Vyplň částku');
   const a = {id: 'axe_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, date: $('#axDate').value || today(), amount: amt, ts: Date.now()};
+  const nt = $('#axNote').value.trim(); if (nt) a.note = nt;
   axes.push(a); sortAxes(); saveLocal(); dbSet(a.id, a);
-  $('#axAmt').value = ''; axTouched = false; refreshDate(); renderAxes(); toast('Uloženo ✓'); croak();
+  $('#axAmt').value = ''; $('#axNote').value = ''; axTouched = false; refreshDate(); renderAxes(); toast('Uloženo ✓'); croak();
 });
+let axEdit = null;
 function renderAxes() {
   const el = $('#axList');
   if (!axes.length) { el.innerHTML = ''; return; }
-  const shown = axes;
-  el.innerHTML = shown.map(a => `<div class="entry">${dt(a.date)}<div><div class="n">${esc(a.name)}</div></div>
-    <div class="r"><b>${fmt(a.amount)} Kč</b><br><button class="del${axArmed === a.id ? ' arm' : ''}" data-id="${a.id}">${axArmed === a.id ? 'Opravdu smazat?' : 'Smazat'}</button></div></div>`).join('') ;
+  el.innerHTML = axes.map(a => {
+    if (axEdit && axEdit.id === a.id) return `<div class="entry">${dt(a.date)}<div><div class="n">${esc(a.name)}</div><div class="axf"><input id="axEA" inputmode="decimal" aria-label="Částka" placeholder="Částka" value="${esc(axEdit.amt)}"><input id="axEN" maxlength="200" aria-label="Poznámka" placeholder="Poznámka" autocomplete="off" value="${esc(axEdit.note)}"></div></div>
+      <div class="r"><span class="axb"><button class="ed" data-act="ok" data-id="${a.id}">Uložit</button><button class="del" data-act="no" data-id="${a.id}">Zrušit</button></span></div></div>`;
+    return `<div class="entry">${dt(a.date)}<div><div class="n">${esc(a.name)}</div>${a.note ? `<div class="m note">${esc(a.note)}</div>` : ''}</div>
+    <div class="r"><b>${fmt(a.amount)} Kč</b><br><span class="axb"><button class="ed" data-act="edit" data-id="${a.id}">Upravit</button><button class="del${axArmed === a.id ? ' arm' : ''}" data-act="del" data-id="${a.id}">${axArmed === a.id ? 'Opravdu smazat?' : 'Smazat'}</button></span></div></div>`;
+  }).join('');
 }
+$('#axList').addEventListener('input', ev => {
+  if (!axEdit) return;
+  if (ev.target.id === 'axEA') axEdit.amt = ev.target.value; else if (ev.target.id === 'axEN') axEdit.note = ev.target.value;
+});
 $('#axList').addEventListener('click', ev => {
-  const b = ev.target.closest('.del'); if (!b) return;
-  const id = b.dataset.id;
+  const b = ev.target.closest('button[data-act]'); if (!b) return;
+  const id = b.dataset.id, act = b.dataset.act, a = axes.find(x => x.id === id);
+  if (act === 'edit') { if (!a) return; axArmed = null; axEdit = {id, amt: String(a.amount).replace('.', ','), note: a.note || ''}; renderAxes(); const f = $('#axEA'); if (f) f.focus(); return; }
+  if (act === 'no') { axEdit = null; renderAxes(); return; }
+  if (act === 'ok') {
+    if (!a) { axEdit = null; renderAxes(); return; }
+    const v = num(axEdit.amt); if (isNaN(v)) return toast('Vyplň částku');
+    a.amount = v; const nt = axEdit.note.trim(); if (nt) a.note = nt; else delete a.note;
+    axEdit = null; saveLocal(); dbSet(a.id, a); renderAxes(); toast('Uloženo ✓'); return;
+  }
   if (axArmed !== id) { axArmed = id; renderAxes(); return; }
-  axArmed = null; axes = axes.filter(a => a.id !== id); saveLocal();
+  axArmed = null; axes = axes.filter(x => x.id !== id); saveLocal();
   if (col) col.doc(id).delete().catch(() => {});
   renderAxes();
 });
@@ -630,7 +669,7 @@ setTimeout(() => document.documentElement.classList.remove('boot'), 1400);
 /* vodorovný švih po stránce přepne na sousední stránku */
 let drag = null;
 document.addEventListener('pointerdown', e => {
-  if (e.button > 0 || e.target.closest('input,textarea,select,nav,#modal')) return;
+  if (e.button > 0 || e.target.closest('input,textarea,select,nav,#modal,#prof')) return;
   drag = {id: e.pointerId, x: e.clientX, y: e.clientY, lock: false, s: [{x: e.clientX, t: e.timeStamp}]};
 });
 document.addEventListener('pointermove', e => {
@@ -958,6 +997,42 @@ const SORT = {byDay: {k: 'day', d: -1}, byName: {k: 'p', d: -1}};
   const st = SORT[th.dataset.t]; st.d = st.k === th.dataset.k ? -st.d : -1; st.k = th.dataset.k;   // 1. klik sestupně, další střídá
   renderStats();
 }));
+let profName = null, profPeriod = 'all';
+const dDiff = (a, b) => Math.round((Date.parse(a) - Date.parse(b)) / 864e5);
+const dFull = d => +d.slice(8) + '. ' + +d.slice(5, 7) + '. ' + d.slice(0, 4);
+function renderProfile() {
+  const sm = statsMode(), mine = entries.filter(e => e.name === profName), ax = axes.filter(a => a.name === profName);
+  const useP = profPeriod !== 'all', E = (useP ? mine.filter(e => e.date.slice(0, 7) === profPeriod) : mine).slice().sort((a, b) => b.date.localeCompare(a.date) || b.ts - a.ts);
+  const mLbl = k => MONTHS[+k.slice(5, 7) - 1].replace(/^./, c => c.toUpperCase()) + ' ' + k.slice(0, 4);
+  const days = [...new Set(mine.map(e => e.date))].sort();
+  let h = `<h3 id="pTitle">${esc(profName)}</h3><div class="sub">${days.length ? 'První záznam ' + dFull(days[0]) + ' · poslední ' + dFull(days[days.length - 1]) : 'Zatím bez záznamů'}</div>`;
+  const ms = new Set(mine.map(e => e.date.slice(0, 7))); if (useP) ms.add(profPeriod);
+  h += `<select id="pSel" aria-label="Období" style="margin:0 0 12px"><option value="all">Celkem (celá doba)</option>` + [...ms].sort().reverse().map(k => `<option value="${k}"${k === profPeriod ? ' selected' : ''}>${mLbl(k)}</option>`).join('') + '</select>';
+  if (!E.length) h += '<div class="empty">V tomto období tu nic není.</div>';
+  else {
+    const p = sum(E.map(e => e.profit));
+    const since = dDiff(today(), days[days.length - 1]), gap = days.length > 1 ? Math.round(dDiff(days[days.length - 1], days[0]) / (days.length - 1)) : null;
+    const T = [['Σ zisk', sgn(p) + ' Kč', cls(p)], ['Záznamů', fmt(E.length), ''], ['Σ žetony', fmt(sum(E.map(e => e.q1))), ''], ['Σ miminka', fmt(sum(E.map(e => e.q2))), ''], ['Poslední záznam', since <= 0 ? 'dnes' : since === 1 ? 'včera' : 'před ' + since + ' dny', ''], ['Průměrný rozestup', gap === null ? '—' : gap + ' ' + pl(gap, 'den', 'dny', 'dní'), '']];
+    h += '<div class="grid">' + T.map(([l, v, c]) => `<div class="stat"><small>${l}</small><strong class="${c}">${v}</strong></div>`).join('') + '</div>';
+    const L = E.slice(0, 14).reverse(), mx = Math.max(1, ...L.map(e => Math.abs(e.profit))), bw = Math.min(300 / L.length, 24), HM = 22, FS = 9, CW = 5.2, thisY = String(new Date().getFullYear());
+    const D = L.map(e => { const hh = Math.max(1.5, Math.abs(e.profit) / mx * HM), pos = e.profit >= 0, t = (pos ? '+' : '') + fmt(e.profit); return {e, hh, pos, t, need: hh + 3 + t.length * CW}; });
+    const up = Math.max(0, ...D.filter(d => d.pos).map(d => d.need)) + 2, dn = Math.max(0, ...D.filter(d => !d.pos).map(d => d.need)), MID = up, Y0 = MID + dn + 8, HT = Y0 + 28;
+    h += `<div class="sec">Zisk posledních záznamů</div><svg class="spark" viewBox="0 0 300 ${Math.ceil(HT)}" role="img" aria-label="Zisk posledních záznamů v Kč"><line x1="0" x2="300" y1="${MID}" y2="${MID}" stroke="var(--line)" stroke-width="1"/>` + D.map((d, i) => {
+      const cx = i * bw + bw / 2, ly = d.pos ? MID - d.hh - 3 : MID + d.hh + 3, ds = d.e.date;
+      return `<rect class="${d.pos ? '' : 'n'}" x="${cx - bw * .35}" y="${d.pos ? MID - d.hh : MID}" width="${bw * .7}" height="${d.hh}" rx="2"/><text transform="translate(${cx},${ly}) rotate(-90)" text-anchor="${d.pos ? 'start' : 'end'}" dominant-baseline="central" style="fill:var(--tx);font-size:${FS}px;font-weight:650">${d.t}</text>`
+        + `<text x="${cx}" y="${Y0 + 8}" text-anchor="middle" style="fill:var(--tx);font-size:9px;font-weight:650">${+ds.slice(8)}</text><text x="${cx}" y="${Y0 + 17}" text-anchor="middle" style="fill:var(--mut);font-size:7.5px">${MSHORT[+ds.slice(5, 7) - 1]}</text>` + (ds.slice(0, 4) !== thisY ? `<text x="${cx}" y="${Y0 + 25}" text-anchor="middle" style="fill:var(--mut);font-size:7px">’${ds.slice(2, 4)}</text>` : '');
+    }).join('') + '</svg>';
+    h += `<div class="sec">Poslední záznamy</div>` + E.slice(0, 6).map(e => `<div class="entry">${dt(e.date)}<div><div class="n">${fmt(e.q1)} žetonů</div><div class="m">${fmt(e.q2)} miminek</div></div><div class="r"><b class="${cls(e.profit)}">${sgn(e.profit)} Kč</b></div></div>`).join('');
+  }
+  if (ax.length) h += `<div class="sec">Sekery<span>${ax.length}× · Σ ${fmt(sum(ax.map(a => a.amount)))} Kč</span></div>` + ax.slice().sort((a, b) => b.date.localeCompare(a.date) || b.ts - a.ts).slice(0, 8).map(a => `<div class="entry">${dt(a.date)}<div>${a.note ? `<div class="n" style="white-space:normal">${esc(a.note)}</div>` : '<div class="m">Bez poznámky</div>'}</div><div class="r"><b>${fmt(a.amount)} Kč</b></div></div>`).join('');
+  $('#pBody').innerHTML = h;
+}
+function openProfile(name) { profName = name; profPeriod = statsMode(); renderProfile(); const p = $('#prof'); p.classList.add('show'); p.setAttribute('aria-hidden', 'false'); p.querySelector('.pbox').scrollTop = 0; }
+function closeProfile() { profName = null; const p = $('#prof'); p.classList.remove('show'); p.setAttribute('aria-hidden', 'true'); }
+$('#byName').addEventListener('click', e => { const b = e.target.closest('.nm'); if (b) openProfile(b.dataset.name); });
+$('#prof').addEventListener('click', e => { if (e.target === $('#prof') || e.target.closest('#pX')) return closeProfile(); });
+$('#prof').addEventListener('change', e => { if (e.target.id === 'pSel') { profPeriod = e.target.value; renderProfile(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && profName) closeProfile(); });
 const statsMode = () => (settings.statsPeriod && settings.statsPeriod !== 'all') ? settings.statsPeriod : 'all';
 function renderStatsPeriod() {
   const sel = $('#statsPeriod'), cur = statsMode();
@@ -1053,7 +1128,7 @@ function renderStats() {
   E.forEach(e => (names[e.name] = names[e.name] || []).push(e));
   const nameRows = Object.keys(names).map(k => ({name: k, ...agg(names[k])}));
   $('#byName').innerHTML = '<table>' + head('byName', [['name', 'Jméno'], ['n', 'Počet'], ['q1', 'Σ žetony'], ['q2', 'Σ miminka'], ['p', 'Σ zisk']]) +
-    sortRows(nameRows, SORT.byName).map(r => `<tr><td>${esc(r.name)}</td><td>${r.n}</td><td>${fmt(r.q1)}</td><td>${fmt(r.q2)}</td><td class="${cls(r.p)}">${sgn(r.p)}</td></tr>`).join('') + '</table>';
+    sortRows(nameRows, SORT.byName).map(r => `<tr><td><button class="nm" data-name="${esc(r.name)}">${esc(r.name)}</button></td><td>${r.n}</td><td>${fmt(r.q1)}</td><td>${fmt(r.q2)}</td><td class="${cls(r.p)}">${sgn(r.p)}</td></tr>`).join('') + '</table>';
 }
 
 /* ===== Nádoby ===== */
@@ -1713,6 +1788,7 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) rend
 $('#sync').addEventListener('click', () => toast($('#sync').textContent === 'jen v tomto telefonu' ? 'Data jsou uložená jen v tomto telefonu' : 'Úložiště: ' + $('#sync').textContent));
 
 function renderAll() {
+  if (profName && document.activeElement !== $('#pSel')) renderProfile();
   renderToday();
   renderNames(); renderSettings(); fillPrice(); renderJarPeriod(); renderStatsPeriod();
   renderList(); renderAxes(); renderStats(); renderMonthly(); renderWipe(); renderBackup(); updateJars();
